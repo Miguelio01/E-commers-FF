@@ -3,22 +3,15 @@
 
 Este documento sirve como una bitácora para rastrear el progreso del desarrollo y mantener el contexto entre sesiones.
 
-### Última Actualización (15 de Septiembre de 2025) - Fin de Sesión
+### Última Actualización (17 de Septiembre de 2025)
 
-Se completó la configuración del microservicio `srv-usuarios` para que pueda conectarse al entorno local de Supabase.
+Se completó la configuración y refinamiento de la estrategia de autenticación basada en JWT en `srv-usuarios`.
 
-*   **✅ Fase 0: Configuración Fundamental** - COMPLETADA.
-    *   Análisis del plan, instalación de CLI de Supabase, inicio de entorno Docker y creación de archivos `.env` en los 4 microservicios.
-*   **✅ Fase 1: Preparación de `srv-usuarios`** - COMPLETADA.
-    *   Se instalaron las dependencias `@supabase/supabase-js` y `@nestjs/config`.
-    *   Se creó un `SupabaseModule` y `SupabaseService` para gestionar la conexión.
-    *   Se actualizó el `AppModule` principal para importar `ConfigModule` y `SupabaseModule`.
-*   **✅ Fase 1.1: Generación de Componentes de Autenticación y Endpoints** - COMPLETADA.
-    *   Se generaron el módulo, controlador y servicio `auth`.
-    *   Se definieron los endpoints `registro` y `login` en `auth.controller.ts`.
-*   **✅ Fase 1.2: Implementación de Lógica de Autenticación** - COMPLETADA.
-    *   Se implementó la lógica de registro y login en `auth.service.ts` utilizando `SupabaseService`.
-    *   Se integró `AuthService` con `AuthController` para manejar las solicitudes.
+*   **✅ Fase 1.4: Implementación y Refinamiento de JWT** - COMPLETADA.
+    *   Se verificó la implementación de `JwtStrategy` para validar tokens.
+    *   Se creó y configuró el archivo `.env` con `JWT_SECRET` y `JWT_EXPIRATION`.
+    *   Se actualizó `AuthModule` para que el tiempo de expiración del token se gestione mediante variables de entorno.
+    *   Se confirmó la existencia de una ruta protegida (`/auth/profile`) para verificar la autenticación.
 
 ### Estado Actual del Plan
 
@@ -27,10 +20,7 @@ Se completó la configuración del microservicio `srv-usuarios` para que pueda c
 
 ### 🚀 Siguiente Paso (Próxima Sesión)
 
-El próximo paso es refinar la gestión de usuarios y la seguridad, con un enfoque en la alta seguridad y el encriptamiento de datos sensibles.
+El próximo paso es abordar la seguridad de los datos sensibles.
 
-1.  **Implementar DTOs de autenticación:** Crear DTOs específicos para las solicitudes de registro y login para validación y tipado.
-2.  **Manejo de errores:** Mejorar el manejo de errores en `auth.service.ts` y `auth.controller.ts` para proporcionar respuestas más informativas y seguras.
-3.  **Protección de rutas:** Implementar guardias de autenticación para proteger rutas que requieran que el usuario esté logueado.
-4.  **Estrategia JWT:** Configurar y utilizar JSON Web Tokens (JWT) para la gestión de sesiones seguras.
-5.  **Encriptamiento de datos sensibles:** Investigar e implementar mecanismos de encriptamiento para datos de clientes, transacciones y otra información vital que requiera seguridad inquebrantable.
+1.  **Encriptamiento de datos sensibles:** Investigar e implementar una estrategia robusta para encriptar datos críticos de la aplicación, como información personal de usuarios, detalles de transacciones y cualquier otro dato que lo requiera. Se evaluarán librerías como `crypto` de Node.js o soluciones más avanzadas según la necesidad.
+2.  **Análisis de los otros microservicios:** Empezar a planificar la estructura y funcionalidades de los otros servicios (`srv-ordenes`, `srv-pagos`, `srv-productos`).
